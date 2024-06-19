@@ -78,7 +78,7 @@ int ptrarr_expand(Ptrarr * ptrarr, int new_capacity)
 	return 0;
 }
 
-int strarr_push(Ptrarr * ptrarr, void * p)
+int ptrarr_push(Ptrarr * ptrarr, void * p)
 {
 	if(ptrarr == NULL || p == NULL)
 	{
@@ -104,7 +104,7 @@ int strarr_push(Ptrarr * ptrarr, void * p)
 	return 0;
 }
 
-void * strarr_get(Ptrarr * ptrarr, int index)
+void * ptrarr_get(Ptrarr * ptrarr, int index)
 {
 	if(ptrarr == NULL)
 	{
@@ -121,7 +121,7 @@ void * strarr_get(Ptrarr * ptrarr, int index)
 	return ptrarr->ptr_arr[index];
 }
 
-int strarr_set(Ptrarr * ptrarr, int index, void * p)
+int ptrarr_set(Ptrarr * ptrarr, int index, void * p)
 {
 	if(ptrarr == NULL || p == NULL)
 	{
@@ -139,7 +139,7 @@ int strarr_set(Ptrarr * ptrarr, int index, void * p)
 	{
 		//Hacer push, ya que vendría a ser lo mismo
 		if(PRINT_DEBUG >= 1) fprintf(stderr, "[INFO] ptrarr_set: just pushing...\n");
-		strarr_push(ptrarr, p);
+		ptrarr_push(ptrarr, p);
 		return 0;
 	}
 
@@ -154,7 +154,7 @@ int strarr_set(Ptrarr * ptrarr, int index, void * p)
 }
 
 
-int strarr_destroy_everything(Ptrarr * ptrarr)
+int ptrarr_destroy_everything(Ptrarr * ptrarr)
 {
 	if(ptrarr == NULL)
 	{
@@ -167,61 +167,3 @@ int strarr_destroy_everything(Ptrarr * ptrarr)
 	return 0;
 }
 
-/*
-int main()
-{
-		char * lyrics[] = 
-	{
-        "Twinkle", "twinkle", "little", "star",
-        "How", "I", "wonder", "what", "you", "are",
-        "Up", "above", "the", "world", "so", "high",
-        "Like", "a", "diamond", "in", "the", "sky",
-        "Twinkle", "twinkle", "little", "star",
-        "How", "I", "wonder", "what", "you", "are"
-    };
-
-    if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: initialize\n");
-	Strarr * arr = strarr_new(1);
-	
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: loop\n");
-	for(int i = 0 ; i < 32; i++)
-	{
-		printf(">>>%i\n", i);
-		strarr_push(arr, lyrics[i]);
-
-		for(int j = 0; j < arr->length; j++)
-		{
-			printf("%i: %s\n", j, strarr_get(arr, j));
-		}
-	}
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: destroy some\n");
-	for(int i = 0; i < 16; i++)
-	{
-		printf("Destroying number %i\n", i);
-		strarr_destroy_string(arr, 0);
-	}
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: print everything again\n");
-	for(int j = 0; j < arr->length; j++)
-	{
-		printf("%i: %s\n", j, strarr_get(arr, j));
-	}
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: push\n");
-	strarr_push(arr, "Enemy lasagna robust below wax");
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: get\n");
-	printf("%s\n", strarr_get(arr, arr->length - 1));
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: set\n");
-	strarr_set(arr, arr->length - 1, "tapa la patata");
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: get again\n");
-	printf("%s\n", strarr_get(arr, arr->length - 1));
-
-	if(PRINT_DEBUG >= 1) fprintf(stderr, "> main: destroy everything\n");
-	strarr_destroy_everything(arr);
-	return 0;
-}
-*/
