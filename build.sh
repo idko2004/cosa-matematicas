@@ -9,6 +9,9 @@ NOCOLOR="\033[0m"
 
 mkdir -p $MATERIALS
 
+echo -e "${YELLOW}Compiling parse_input${NOCOLOR}"
+gcc -c parse_input.c -o "${MATERIALS}/parse_input.o"
+
 echo -e "${YELLOW}Compiling ptrarr${NOCOLOR}"
 gcc -c ptrarr.c -o "${MATERIALS}/ptrarr.o"
 
@@ -16,7 +19,7 @@ echo -e "${YELLOW}Compiling diferencias_divididas${NOCOLOR}"
 gcc -c diferencias_divididas.c -o "${MATERIALS}/diferencias_divididas.o"
 
 echo -e "${YELLOW}Compiling main${NOCOLOR}"
-gcc "${MATERIALS}/ptrarr.o" "${MATERIALS}/diferencias_divididas.o" main.c -o "${BUILD}/program"
+gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/diferencias_divididas.o" main.c -o "${BUILD}/program"
 
 if [ $? -eq 0 ]; then
 	echo -e "${GREEN}Done!${NOCOLOR}"

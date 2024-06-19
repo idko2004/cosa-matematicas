@@ -1,6 +1,7 @@
 #include "diferencias_divididas.h"
 
 #include "ptrarr.h"
+#include "parse_input.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -20,12 +21,10 @@ FractionCalculation * new_FractionCalculation(double_t x0, double_t x1, double_t
 
 void print_FractionCalculation(FractionCalculation * f)
 {
-	printf("x\t\ty\n");
-	printf("%f\t%f\n", f->x0, f->y0);
-	printf("%f\t%f\n", f->x1, f->y1);
-	printf("result = %f\n", f->result);
-	printf("pointer = %p\n", f);
-	printf("\n");
+	printf("{\n    x\t\ty\n\n");
+	printf("    %f\t%f\n", f->x0, f->y0);
+	printf("    %f\t%f\n", f->x1, f->y1);
+	printf("\n    resultado = %f\n}\n", f->result);
 }
 
 double_t calculateFraction(FractionCalculation * input)
@@ -41,19 +40,23 @@ double_t calculateFraction(FractionCalculation * input)
 	return input->result;
 }
 
-Ptrarr * diferencias_divididas_main_loop()
+Ptrarr * diferencias_divididas_main_loop(Points * points)
 {
-	double_t x[] = {1, 2, 3, 5};
-	double_t y[] = {4, 3.5, 4, 5.6};
-	int arrLength = 4;
+	printf("\n# Diferencias divididas:\n\n");
+
+	double_t * x = points->x;
+	double_t * y = points->y;
+	int arrLength = points->length;
 
 	Ptrarr * iterations = ptrarr_new(arrLength - 1);
 	Ptrarr * first_calc_iteration = ptrarr_new(arrLength - 1);
 	ptrarr_push(iterations, first_calc_iteration);
 
+	printf("## Columna de inicio:\n");
+
 	for(int i = 0; i < arrLength - 1; i++)
 	{
-		printf("---\nsmall iteration: %i\n", i);
+		printf("### Operación nro %i:\n", i + 1);
 
 		FractionCalculation * calc = new_FractionCalculation(x[i], x[i+1], y[i], y[i+1]);
 		ptrarr_push(first_calc_iteration, calc);
@@ -67,13 +70,13 @@ Ptrarr * diferencias_divididas_main_loop()
 	{
 		//Ptrarr * current_iteration = ptrarr_get(iterations, iterationCounter);
 
-		printf("\n\n--------\nbig iteration: %i\n", iterationCounter);
+		printf("## Columna nro %i:\n", iterationCounter + 2);
 
 		Ptrarr * next_iteration = ptrarr_new(current_iteration->length - 1);
 		ptrarr_push(iterations, next_iteration);
 		for(int i = 0; i < current_iteration->length - 1; i++)
 		{
-			printf("---\nsmall iteration: %i\n", i);
+			printf("### Operación nro %i:\n", i + 1);
 
 			FractionCalculation * calc0 = (FractionCalculation *) ptrarr_get(current_iteration, i);
 			FractionCalculation * calc1 = (FractionCalculation *) ptrarr_get(current_iteration, i + 1);

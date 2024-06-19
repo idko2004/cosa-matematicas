@@ -8,5 +8,8 @@
 
 int main(int argc, char ** argv)
 {
-	Ptrarr * diferencias_divididas_result = diferencias_divididas_main_loop();
+	Points * input = parse_input(argc, argv);
+	if(input == NULL) return 1;
+
+	Ptrarr * diferencias_divididas_result = diferencias_divididas_main_loop(input);
 }
