@@ -40,17 +40,7 @@ int build_equation(Points * points, double_t * b_values, int * b_values_length)
 		8 = strlen(template)
 	*/
 
-//fprintf(stderr, "[DEBUG] pointer result_string: %p\n", result_string);
-
 	snprintf(result_string, sizeof(char) * SIZE_DOUBLE_TO_CHAR, "%f", points->y[0]); //Copiar b0 a result_string
-
-
-//fprintf(stderr, "[DEBUG] result_string contents: %s\n", result_string);
-
-//fprintf(stderr, "[DEBUG] str_write_position contents: %p\n", str_write_position);
-//fprintf(stderr, "[DEBUG] result_string length: %li\n", strlen(result_string));
-	
-	//printf("%s\n%i\n", x_template(0.56), *b_values_length);
 
 	for(int i = 1; i <= *b_values_length; i++)
 	{
@@ -66,9 +56,8 @@ int build_equation(Points * points, double_t * b_values, int * b_values_length)
 		{
 			strcpy(result_string + strlen(result_string), x_template(points->x[j]));
 		}
-
 	}
 
-	printf("%s", result_string);
+	printf("%s\n", result_string);
 	return 0;
 }
