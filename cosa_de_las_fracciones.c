@@ -30,6 +30,7 @@ void print_FractionCalculation(FractionCalculation * f)
 	printf("{\n    x\t\ty\n\n");
 	printf("    %f\t%f\n", f->x0, f->y0);
 	printf("    %f\t%f\n", f->x1, f->y1);
+	printf("\n    operación = (%f -%f)/(%f -%f)", f->y1, f->y0, f->x1, f->x0);
 	printf("\n    resultado = %f\n}\n", f->result);
 }
 
@@ -180,7 +181,7 @@ double_t * obtain_b_values(Ptrarr * iterations, int * length_out)
 		calc = (FractionCalculation *) ptrarr_get(operation, 0);
 		if(calc == NULL)
 		{
-			fprintf(stderr, "[ERROR] obtain_b_values: No se pudo obtener FractionCalculation de operation que se obtuvo de iterations[%i]\n");
+			fprintf(stderr, "[ERROR] obtain_b_values: No se pudo obtener FractionCalculation de operation que se obtuvo de iterations[%i]\n",i);
 			return NULL;
 		}
 
