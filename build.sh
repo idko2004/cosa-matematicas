@@ -15,11 +15,11 @@ gcc -c parse_input.c -o "${MATERIALS}/parse_input.o"
 echo -e "${YELLOW}Compiling ptrarr${NOCOLOR}"
 gcc -c ptrarr.c -o "${MATERIALS}/ptrarr.o"
 
-echo -e "${YELLOW}Compiling diferencias_divididas${NOCOLOR}"
-gcc -c diferencias_divididas.c -o "${MATERIALS}/diferencias_divididas.o"
+echo -e "${YELLOW}Compiling cosa_de_las_fracciones${NOCOLOR}"
+gcc -c cosa_de_las_fracciones.c -o "${MATERIALS}/cosa_de_las_fracciones.o"
 
 echo -e "${YELLOW}Compiling main${NOCOLOR}"
-gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/diferencias_divididas.o" main.c -o "${BUILD}/program"
+gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/cosa_de_las_fracciones.o" main.c -o "${BUILD}/program"
 
 if [ $? -eq 0 ]; then
 	echo -e "${GREEN}Done!${NOCOLOR}"
