@@ -20,4 +20,6 @@ int ptrarr_set(Ptrarr * ptrarr, int index, void * p); //Reemplaza un string que 
 
 int ptrarr_destroy_everything(Ptrarr * ptrarr); //Libera la memoria del struct y de todos los strings que contenía
 
+void ptrarr_print_pointers(Ptrarr * ptrarr); //Imprimir punteros.
+
 #endif

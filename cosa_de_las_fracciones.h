@@ -11,4 +11,6 @@ typedef struct
 
 Ptrarr * cosa_de_las_fracciones_main_loop(Points * points);
 
+double_t * obtain_b_values(Ptrarr * iterations, int * length);
+
 #endif

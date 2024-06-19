@@ -167,3 +167,19 @@ int ptrarr_destroy_everything(Ptrarr * ptrarr)
 	return 0;
 }
 
+void ptrarr_print_pointers(Ptrarr * ptrarr) //Imprimir punteros.
+{
+	if(ptrarr == NULL)
+	{
+		if(PRINT_DEBUG >= 1) fprintf(stderr, "[ERROR] ptrarr_print_pointers: ptrarr is NULL\n");
+		return;
+	}
+
+	printf("[PRINTING POINTERS OF PTRARR]\n");
+
+	for(int i = 0; i < ptrarr->length; i++)
+	{
+		printf(">%i = %p\n", i, ptrarr_get(ptrarr, i));
+	}
+}
+

@@ -18,8 +18,11 @@ gcc -c ptrarr.c -o "${MATERIALS}/ptrarr.o"
 echo -e "${YELLOW}Compiling cosa_de_las_fracciones${NOCOLOR}"
 gcc -c cosa_de_las_fracciones.c -o "${MATERIALS}/cosa_de_las_fracciones.o"
 
+echo -e "${YELLOW}Compiling build_equation${NOCOLOR}"
+gcc -c build_equation.c -o "${MATERIALS}/build_equation.o"
+
 echo -e "${YELLOW}Compiling main${NOCOLOR}"
-gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/cosa_de_las_fracciones.o" main.c -o "${BUILD}/program"
+gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/cosa_de_las_fracciones.o" "${MATERIALS}/build_equation.o" main.c -o "${BUILD}/program"
 
 if [ $? -eq 0 ]; then
 	echo -e "${GREEN}Done!${NOCOLOR}"

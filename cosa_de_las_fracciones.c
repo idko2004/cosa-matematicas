@@ -48,23 +48,23 @@ double_t calculateFraction(FractionCalculation * input)
 
 Ptrarr * cosa_de_las_fracciones_main_loop(Points * points)
 {
-	printf("\n# Diferencias divididas:\n\n");
+	printf("\n# Cosa esa de las fracciones:\n\n");
 
 	//La "tabla"
 	double_t * x = points->x;
 	double_t * y = points->y;
 	int arrLength = points->length;
 
-	Ptrarr * iterations = ptrarr_new(arrLength - 1); //Un array para guardar todas las "columnas"
-	Ptrarr * first_calc_iteration = ptrarr_new(arrLength - 1); //Un array para guardar todos los cálculos de esta "columna"
+	Ptrarr * iterations = ptrarr_new(arrLength); //Un array para guardar todas las "columnas"
+	Ptrarr * current_iteration = ptrarr_new(arrLength); //Un array para guardar todos los cálculos de esta "columna"
 
-	if(iterations == NULL || first_calc_iteration == NULL)
+	if(iterations == NULL || current_iteration == NULL)
 	{
 		fprintf(stderr, "[ERROR] diferencias_divididas_main_loop: iterations o first_calc_iteration es NULL\n");
 		return NULL;
 	}
 
-	if(ptrarr_push(iterations, first_calc_iteration) != 0)
+	if(ptrarr_push(iterations, current_iteration) != 0)
 	{
 		fprintf(stderr, "[ERROR] diferencias_divididas_main_loop: No se pudo hacer ptrarr_push\n");
 		return NULL;
@@ -84,7 +84,7 @@ Ptrarr * cosa_de_las_fracciones_main_loop(Points * points)
 			return NULL;
 		}
 
-		if(ptrarr_push(first_calc_iteration, calc) != 0)
+		if(ptrarr_push(current_iteration, calc) != 0)
 		{
 			fprintf(stderr, "[ERROR] diferencias_divididas_main_loop: No se pudo agregar calc en first_calc_iteration\n");
 			return NULL;
@@ -94,24 +94,16 @@ Ptrarr * cosa_de_las_fracciones_main_loop(Points * points)
 		print_FractionCalculation(calc);
 	}
 
-	Ptrarr * current_iteration = first_calc_iteration;
-
 	//Calcular cada "columna"
 	//Se calcula la primera columna y se crea la columna siguiente, luego se calcula sobre esta y se crea la columna siguiente...
 	for(int iterationCounter = 0; iterationCounter < arrLength - 2; iterationCounter++)
 	{
 		printf("## Columna nro %i:\n", iterationCounter + 2);
 
-		Ptrarr * next_iteration = ptrarr_new(current_iteration->length - 1);
+		Ptrarr * next_iteration = ptrarr_new(arrLength);
 		if(next_iteration == NULL)
 		{
 			fprintf(stderr, "[ERROR]: diferencias_divididas_main_loop: No se pudo crear un nuevo ptrarr\n");
-			return NULL;
-		}
-		
-		if(ptrarr_push(iterations, next_iteration) != 0)
-		{
-			fprintf(stderr, "[ERROR] diferencias_divididas_main_loop: No se pudo añadir el ptrarr recién creado al otro ptrarr\n");
 			return NULL;
 		}
 
@@ -162,4 +154,39 @@ Ptrarr * cosa_de_las_fracciones_main_loop(Points * points)
 	}
 
 	return iterations;
+}
+
+double_t * obtain_b_values(Ptrarr * iterations, int * length_out)
+{
+	double_t * b_values = malloc(sizeof(double_t) * iterations->length);
+	if(b_values == NULL)
+	{
+		fprintf(stderr, "obtain_b_values: No se pudo crear un array de double_t\n");
+		return NULL;
+	}
+
+	Ptrarr * operation;
+	FractionCalculation * calc;
+
+	for(int i = 0; i < iterations->length; i++)
+	{
+		operation = (Ptrarr *) ptrarr_get(iterations, i);
+		if(operation == NULL)
+		{
+			fprintf(stderr, "[ERROR] obtain_b_values: No se pudo obtener operación de iterations[%i]\n", i);
+			return NULL;
+		}
+
+		calc = (FractionCalculation *) ptrarr_get(operation, 0);
+		if(calc == NULL)
+		{
+			fprintf(stderr, "[ERROR] obtain_b_values: No se pudo obtener FractionCalculation de operation que se obtuvo de iterations[%i]\n");
+			return NULL;
+		}
+
+		b_values[i] = calc->result;
+	}
+
+	*length_out = iterations->length;
+	return b_values;
 }

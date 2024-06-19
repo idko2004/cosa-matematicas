@@ -21,7 +21,7 @@ void print_points(Points * p)
 
 Points * parse_input(int argc, char ** argv)
 {
-	char * splitter = "=";
+	char * splitter = "@";
 
 	//Determinar cuántos elementos hay
 	int size_x = 0, size_y = 0, splitter_index = -1;
