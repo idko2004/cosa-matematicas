@@ -53,7 +53,7 @@ int main(int argc, char ** argv)
 	Ptrarr * first_calc_iteration = ptrarr_new(arrLength - 1);
 	ptrarr_push(iterations, first_calc_iteration);
 
-		for(int i = 0; i < arrLength - 1; i++)
+	for(int i = 0; i < arrLength - 1; i++)
 	{
 		printf("%i\n", i);
 
@@ -63,18 +63,19 @@ int main(int argc, char ** argv)
 		print_FractionCalculation(calc);
 	}
 
-	for(int iterationCounter = 0; iterationCounter < arrLength - 1; iterationCounter++)
+	Ptrarr * current_iteration = first_calc_iteration;
+
+	for(int iterationCounter = 0; iterationCounter < arrLength - 2; iterationCounter++)
 	{
-		Ptrarr * current_iteration = ptrarr_get(iterations, iterationCounter);
+		//Ptrarr * current_iteration = ptrarr_get(iterations, iterationCounter);
 
-
-		printf("\n\n--------\n\n");
+		printf("\n\n--------\nbig iteration: %i\n", iterationCounter);
 
 		Ptrarr * next_iteration = ptrarr_new(current_iteration->length - 1);
 		ptrarr_push(iterations, next_iteration);
 		for(int i = 0; i < current_iteration->length - 1; i++)
 		{
-			printf("%i\n", i);
+			printf("small iteration: %i\n", i);
 
 			FractionCalculation * calc0 = (FractionCalculation *) ptrarr_get(current_iteration, i);
 			FractionCalculation * calc1 = (FractionCalculation *) ptrarr_get(current_iteration, i + 1);
@@ -91,6 +92,7 @@ int main(int argc, char ** argv)
 		}
 
 		ptrarr_push(iterations, next_iteration);
+		current_iteration = next_iteration;
 	}
 
 /*
