@@ -12,8 +12,11 @@ mkdir -p $MATERIALS
 echo -e "${YELLOW}Compiling ptrarr${NOCOLOR}"
 gcc -c ptrarr.c -o "${MATERIALS}/ptrarr.o"
 
+echo -e "${YELLOW}Compiling diferencias_divididas${NOCOLOR}"
+gcc -c diferencias_divididas.c -o "${MATERIALS}/diferencias_divididas.o"
+
 echo -e "${YELLOW}Compiling main${NOCOLOR}"
-gcc "${MATERIALS}/ptrarr.o" main.c -o "${BUILD}/program"
+gcc "${MATERIALS}/ptrarr.o" "${MATERIALS}/diferencias_divididas.o" main.c -o "${BUILD}/program"
 
 if [ $? -eq 0 ]; then
 	echo -e "${GREEN}Done!${NOCOLOR}"
