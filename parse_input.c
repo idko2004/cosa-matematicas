@@ -42,7 +42,7 @@ Points * parse_input(int argc, char ** argv)
 
 	if(reading_state != 1)
 	{
-		fprintf(stderr, "[INPUT ERROR] Formato erróneo.\nAsegúrese de usar el formato correctamente:\n\nprograma x1 x2 x3 = y1 y2 y3\n");
+		fprintf(stderr, "[INPUT ERROR] Formato erróneo.\nAsegúrese de usar el formato correctamente:\n\nprograma x1 x2 x3 @ y1 y2 y3\n");
 		return NULL;
 	}
 

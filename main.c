@@ -10,6 +10,10 @@
 
 int main(int argc, char ** argv)
 {
+	#ifdef _WIN32
+		printf("[INFO] Las tildes se van a ver mal porque Windows es una basura c:\n\n");
+	#endif
+
 	Points * input = parse_input(argc, argv);
 	if(input == NULL) return 1;
 
