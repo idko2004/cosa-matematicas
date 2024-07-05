@@ -21,7 +21,7 @@ void print_points(Points * p)
 
 Points * parse_input(int argc, char ** argv)
 {
-	char * splitter = "@";
+	char * splitter = ":";
 
 	//Determinar cuántos elementos hay
 	int size_x = 0, size_y = 0, splitter_index = -1;
@@ -42,19 +42,19 @@ Points * parse_input(int argc, char ** argv)
 
 	if(reading_state != 1)
 	{
-		fprintf(stderr, "[INPUT ERROR] Formato erróneo.\nAsegúrese de usar el formato correctamente:\n\nprograma x1 x2 x3 @ y1 y2 y3\n");
+		fprintf(stderr, "[INPUT ERROR] Formato erróneo.\nAsegúrese de usar el formato correctamente:\n\n\tx1 x2 x3 : y1 y2 y3\n");
 		return NULL;
 	}
 
 	if(size_x != size_y)
 	{
-		fprintf(stderr, "[INPUT ERROR] Cantidad distinta de X e Y\n");
+		fprintf(stderr, "[INPUT ERROR] Cantidad distinta de X e Y.\n");
 		return NULL;
 	}
 
 	if(size_x < 2)
 	{
-		fprintf(stderr, "[INPUT ERROR] Demasiados pocos elementos\n");
+		fprintf(stderr, "[INPUT ERROR] No hay elementos suficientes.\n");
 		return NULL;
 	}
 
