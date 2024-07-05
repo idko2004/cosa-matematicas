@@ -1,6 +1,6 @@
 @echo on
 SET build=build
-SET materials=build%\materials
+SET materials=%build%\materials
 echo %materials%
 mkdir %build%
 mkdir %materials%
