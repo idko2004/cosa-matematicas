@@ -45,7 +45,7 @@ int build_equation(Points * points, double_t * b_values, int * b_values_length)
 	for(int i = 1; i <= *b_values_length; i++)
 	{
 		//Añadir el signo
-		if(b_values[i - 1] > 0) strcpy(result_string + strlen(result_string), " +"); // Si es positivo
+		if(b_values[i - 1] >= 0) strcpy(result_string + strlen(result_string), " +"); // Si es positivo
 		else strcpy(result_string + strlen(result_string), " "); //Si es negavito solo un espacio, ya que el propio double lleva el signo
 		
 		//Añadir b
