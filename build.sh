@@ -22,11 +22,11 @@ echo -e "${YELLOW}Compiling build_equation${NOCOLOR}"
 gcc -c build_equation.c -o "${MATERIALS}/build_equation.o"
 
 echo -e "${YELLOW}Compiling main${NOCOLOR}"
-gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/cosa_de_las_fracciones.o" "${MATERIALS}/build_equation.o" main.c -o "${BUILD}/program"
+gcc "${MATERIALS}/parse_input.o" "${MATERIALS}/ptrarr.o" "${MATERIALS}/cosa_de_las_fracciones.o" "${MATERIALS}/build_equation.o" main.c -o "${BUILD}/cosa_matematicas"
 
 if [ $? -eq 0 ]; then
 	echo -e "${GREEN}Done!${NOCOLOR}"
-	echo "The program should be in ${BUILD}/program"
+	echo "The program should be in ${BUILD}/cosa_matematicas"
 else
 	echo -e "${RED}Failed to compile :c${NOCOLOR}"
 fi
